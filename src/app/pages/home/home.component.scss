@@ -1,0 +1,122 @@
+:host { display: block; }
+.home-hero {
+  background: linear-gradient(120deg, #e7ecf2 60%, #d9dcdf 100%);
+  min-height: calc(100vh - 72px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 48px 24px;
+  position: relative;
+  z-index: 0;
+  box-shadow: 0 8px 32px rgba(30, 136, 229, 0.07);
+  border-radius: 10px;
+}
+
+.home-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e88e5;
+  margin: 0 0 18px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px #cfd3d6;
+}
+
+.subtitle {
+  max-width: 740px;
+  margin: 0 auto 32px;
+  color: #347ecb;
+  font-size: 1.13rem;
+  line-height: 1.6;
+  font-style: italic;
+  background: #f6f8fa;
+  border-radius: 5px;
+  padding: 12px 20px;
+  box-shadow: 0 1px 8px #e0e7ef;
+}
+
+.cta {
+  margin-top: 20px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: linear-gradient(90deg, #347ecb 70%, #1e88e5 100%);
+  color: #fff;
+  padding: 14px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.03rem;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 8px #e0e7ef;
+  transition: filter 0.15s, background 0.16s;
+  border: none;
+}
+
+.btn-primary:hover {
+  filter: brightness(0.92);
+  background: linear-gradient(90deg, #1e88e5 70%, #347ecb 100%);
+}
+
+@media (max-width: 900px) {
+  .home-hero {
+    padding: 32px 8px;
+    border-radius: 6px;
+    min-height: calc(100vh - 56px);
+  }
+  .home-hero h1 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+  .subtitle {
+    font-size: 1rem;
+    padding: 10px 8px;
+    margin-bottom: 24px;
+    max-width: 95vw;
+  }
+  .btn-primary {
+    padding: 12px 22px;
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-hero {
+    padding: 16px 2px;
+    border-radius: 0;
+    min-height: calc(100vh - 44px);
+  }
+  .home-hero h1 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    padding: 0 2px;
+  }
+  .subtitle {
+    font-size: 0.92rem;
+    padding: 8px 4px;
+    margin-bottom: 16px;
+    max-width: 99vw;
+  }
+  .btn-primary {
+    padding: 10px 10vw;
+    font-size: 0.96rem;
+    border-radius: 4px;
+  }
+}
+
+@media (max-width: 420px) {
+  .home-hero h1 {
+    font-size: 1.05rem;
+    padding: 0 1px;
+  }
+  .subtitle {
+    font-size: 0.83rem;
+    padding: 6px 2px;
+    margin-bottom: 8px;
+  }
+  .btn-primary {
+    padding: 10px 2vw;
+    font-size: 0.9rem;
+    border-radius: 3px;
+  }
+}

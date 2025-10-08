@@ -1,0 +1,448 @@
+.symptoms-page {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 0 24px 48px;
+  background: linear-gradient(120deg, #f6f8f9 60%, #e0e7ef 100%);
+  box-shadow: 0 8px 32px rgba(30, 136, 229, 0.07);
+  border-radius: 9px;
+}
+h1 {
+  text-align: center;
+  font-weight: 700;
+  margin: 24px 0 22px;
+  color: #1f1f1f;
+  font-size: 2.1rem;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px #cfd3d6;
+}
+.panel {
+  background: #f6f8fa;
+  border-radius: 8px;
+  padding: 32px;
+  min-height: 350px;
+  box-shadow: 0 2px 12px rgba(30, 136, 229, 0.09);
+  margin-bottom: 16px;
+  border: 1px solid #e0e7ef;
+}
+.step-label {
+  color: #347ecb;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+}
+.muted {
+  color: #5d5d5d;
+  font-size: 13px;
+  margin: 0 0 16px 0;
+  font-style: italic;
+}
+
+.input-row {
+  margin-bottom: 18px;
+  position: relative; /* for dropdown positioning */
+}
+.input-row input {
+  width: min(580px, 100%);
+  padding: 16px 18px;
+  font-size: 15.5px;
+  border: 1.5px solid #bfd2f8;
+  border-radius: 4px;
+  background: #fff;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.input-row input::placeholder {
+  text-align: center;
+  color: #8fb6d6;
+  font-size: 15px;
+}
+.input-row input:focus {
+  border-color: #347ecb;
+  box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.14);
+}
+
+/* Suggestions dropdown */
+.suggestions {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: min(580px, 100%);
+  background: #fff;
+  border: 1.5px solid #bfd2f8;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(30, 136, 229, 0.12);
+  z-index: 10;
+  max-height: 240px;
+  overflow: auto;
+}
+.suggestions ul {
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+}
+.suggestions li {
+  padding: 10px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #1a2b3c;
+}
+.suggestions li:hover,
+.suggestions li.active,
+.suggestions li[aria-selected='true'] {
+  background: #eaf2fd;
+}
+.suggestions .no-result {
+  color: #6b7785;
+  cursor: default;
+}
+
+.selected-box {
+  width: 260px;
+  background: #f2f7ff;
+  border: 1.5px solid #bfd2f8;
+  border-radius: 4px;
+  padding: 14px;
+  margin: 12px 0 0 0;
+  box-shadow: 0 2px 8px #e0e7ef;
+}
+.selected-title {
+  font-weight: 700;
+  font-size: 14.5px;
+  margin-bottom: 10px;
+  color: #1e88e5;
+  letter-spacing: 0.2px;
+}
+.selected-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #eaf2fd 60%, #d2e4fb 100%);
+  border: 1.5px solid #bfd2f8;
+  border-radius: 18px;
+  padding: 9px 14px;
+  font-size: 13.5px;
+  box-shadow: 0 1px 4px #e0e7ef;
+  transition: background 0.2s;
+}
+.chip.small {
+  padding: 7px 10px;
+  background: linear-gradient(90deg, #f6f8fa 60%, #e3ebf5 100%);
+}
+.chip-text {
+  font-size: 13.5px;
+  font-weight: 500;
+}
+.chip-close {
+  appearance: none;
+  border: none;
+  background: #e0e7ef;
+  color: #347ecb;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 2px 6px;
+  transition: background 0.15s, color 0.15s;
+}
+.chip-close:hover {
+  background: #bfd2f8;
+  color: #c62828;
+}
+
+.card {
+  background: #fff;
+  border: 1.5px solid #bfd2f8;
+  border-radius: 4px;
+  padding: 22px 30px;
+  margin: 16px auto 0;
+  max-width: 660px;
+  box-shadow: 0 2px 12px #e0e7ef;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 22px;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-field label {
+  font-size: 14px;
+  color: #347ecb;
+  font-weight: 600;
+}
+.form-field input,
+.form-field select {
+  padding: 12px 14px;
+  font-size: 14.5px;
+  border: 1.5px solid #cfd3d6;
+  border-radius: 4px;
+  background: #f8f8f8;
+  transition: border 0.2s;
+}
+.form-field select {
+  background: #f0f4fa;
+  appearance: none;
+}
+.form-field input:focus,
+.form-field select:focus {
+  border-color: #1e88e5;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+  gap: 16px;
+}
+.actions.between {
+  justify-content: space-between;
+}
+.actions.center {
+  justify-content: center;
+}
+.btn-next,
+.btn-back {
+  background: linear-gradient(90deg, #347ecb 70%, #1e88e5 100%);
+  color: #fff;
+  padding: 14px 26px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 8px #e0e7ef;
+  transition: filter 0.18s, background 0.18s;
+}
+.btn-back {
+  background: linear-gradient(90deg, #2f7bbf 70%, #347ecb 100%);
+}
+.btn-next:hover,
+.btn-back:hover {
+  filter: brightness(0.93);
+  background: linear-gradient(90deg, #1e88e5 70%, #347ecb 100%);
+}
+.error {
+  color: #c62828;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Review step */
+.review-section {
+  margin-top: 12px;
+  padding: 12px 0;
+}
+.review-title {
+  font-weight: 700;
+  margin: 10px 0;
+  color: #1e88e5;
+  font-size: 15px;
+}
+.chip-row {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 14px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.details-bar {
+  background: #fff;
+  border: 1.5px solid #bfd2f8;
+  border-radius: 4px;
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  align-items: center;
+  box-shadow: 0 1px 6px #e0e7ef;
+}
+.details-bar .label {
+  color: #347ecb;
+  margin-right: 7px;
+  font-weight: 600;
+}
+.details-bar .value {
+  color: #222;
+  font-weight: 500;
+}
+
+/* Results step */
+.center {
+  text-align: center;
+}
+.result-block {
+  margin: 18px 0 24px;
+  background: linear-gradient(120deg, #d2e4fb 60%, #eaf2fd 100%);
+  border: 1.8px solid #bfd2f8;
+  border-radius: 5px;
+  padding: 18px;
+  box-shadow: 0 2px 10px #e0e7ef;
+}
+.block-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #347ecb;
+  font-size: 15.5px;
+}
+.mt {
+  margin-top: 16px;
+}
+.big-box {
+  background: #eceff1;
+  border: 1.5px solid #d9dde1;
+  border-radius: 4px;
+  padding: 28px;
+  box-shadow: 0 1px 6px #cfd3d6;
+}
+.small-box {
+  background: #f6f8fa;
+  border: 1.5px solid #d9dde1;
+  border-radius: 4px;
+  padding: 12px 18px;
+  font-size: 14px;
+  color: #222;
+}
+.big-text {
+  font-size: 20px;
+  color: #1e88e5;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.info-banner {
+  margin-top: 20px;
+  background: linear-gradient(90deg, #e9edf0 70%, #f6f8fa 100%);
+  border: 1.5px solid #bfd2f8;
+  border-radius: 4px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 6px #e0e7ef;
+}
+.info-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #347ecb;
+}
+.info-sub {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* Normal text for Treatment Option */
+.treatment-text {
+  font-size: 15px;
+  color: #222;
+  text-align: left;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+/* Responsive styles */
+
+@media (max-width: 900px) {
+  .symptoms-page {
+    max-width: 100%;
+    padding: 0 8px 32px;
+    border-radius: 0;
+  }
+  .panel {
+    padding: 18px;
+    min-height: 280px;
+  }
+  .card {
+    max-width: 99vw;
+    padding: 16px 10px;
+  }
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .selected-box {
+    width: 98vw;
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 600px) {
+  .symptoms-page {
+    padding: 0 2px 16px;
+  }
+  h1 {
+    font-size: 1.3rem;
+    margin: 18px 0 14px;
+  }
+  .panel {
+    padding: 10px;
+    min-height: 200px;
+  }
+  .input-row input {
+    width: 100%;
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+  .suggestions {
+    width: 100%;
+    max-height: 200px;
+  }
+  .selected-box {
+    width: 98vw;
+    max-width: 98vw;
+    padding: 8px;
+  }
+  .card {
+    padding: 8px 4px;
+    margin: 8px auto 0;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .chip {
+    font-size: 12px;
+    padding: 6px 7px;
+  }
+  .chip.small {
+    padding: 5px 6px;
+  }
+  .details-bar {
+    grid-template-columns: 1fr;
+    padding: 8px 6px;
+    gap: 8px;
+  }
+  .result-block,
+  .big-box,
+  .small-box,
+  .info-banner {
+    padding: 8px 6px;
+  }
+}
+
+@media (max-width: 420px) {
+  .symptoms-page {
+    padding: 0 1px 8px;
+  }
+  h1 {
+    font-size: 1.06rem;
+  }
+  .selected-title, .review-title, .block-title {
+    font-size: 12px;
+  }
+  .chip, .chip.small, .chip-text {
+    font-size: 10px !important;
+  }
+}
