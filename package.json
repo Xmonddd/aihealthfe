@@ -6,5 +6,8 @@
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "typecheck:watch": "tsc -p tsconfig.app.json --noEmit --watch",
     "lint": "ng lint"
+  },
+  "devDependencies": {
+    "@angular/cli": "^19.2.19"
   }
 }
