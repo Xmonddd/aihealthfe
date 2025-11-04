@@ -1,0 +1,155 @@
+<section class="dash">
+  <header class="dash-hero">
+    <div class="dash-container hero-layout">
+      <div class="hero-text">
+        <span class="eyebrow">Dashboard</span>
+        <h1>Your health snapshot</h1>
+        <p>
+          Signed in as <strong>{{ (auth.user$ | async)?.email }}</strong>.
+          {{ totalChecks
+            ? 'Track changes, revisit AI guidance, and stay informed.'
+            : 'Run your first symptom check to unlock personalized insights.' }}
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" routerLink="/symptoms">
+            <span class="icon">🩺</span>
+            Start new check
+          </a>
+          <a class="button outline" routerLink="/about">
+            <span class="icon">ℹ️</span>
+            About AiHealthMate
+          </a>
+        </div>
+
+        <dl class="hero-summary" *ngIf="totalChecks">
+          <div>
+            <dt>Last result</dt>
+            <dd>{{ lastCondition }}</dd>
+          </div>
+          <div>
+            <dt>Last checked</dt>
+            <dd>{{ lastWhen }}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <aside class="hero-panel" *ngIf="totalChecks" aria-hidden="true">
+        <header>
+          <span class="tag">Recent insight</span>
+          <time>{{ lastWhen }}</time>
+        </header>
+        <p class="panel-condition">{{ lastCondition }}</p>
+        <footer>
+          <span class="panel-pill">Total checks: {{ totalChecks }}</span>
+          <span class="pulse"><span></span><span></span><span></span></span>
+        </footer>
+      </aside>
+    </div>
+  </header>
+
+  <section class="dash-container stat-strip" aria-label="Summary statistics">
+    <article class="stat-card">
+      <span class="stat-icon">📊</span>
+      <div>
+        <p class="stat-label">Total checks</p>
+        <p class="stat-value">{{ totalChecks }}</p>
+      </div>
+    </article>
+    <article class="stat-card">
+      <span class="stat-icon">🩺</span>
+      <div>
+        <p class="stat-label">Latest result</p>
+        <p class="stat-value">{{ lastCondition }}</p>
+      </div>
+    </article>
+    <article class="stat-card">
+      <span class="stat-icon">🧾</span>
+      <div>
+        <p class="stat-label">Symptoms tracked</p>
+        <p class="stat-value">{{ asSymArray(lastItem?.symptoms).length }}</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="dash-container history-section" aria-label="Symptom history">
+    <div class="section-head">
+      <div>
+        <h2>History</h2>
+        <p>Review past analyses, treatment ideas, and advice captured from your checks.</p>
+      </div>
+
+      <button class="button subtle" type="button" (click)="refresh()" [disabled]="loading">
+        <span class="icon">🔄</span>
+        {{ loading ? 'Refreshing…' : 'Refresh' }}
+      </button>
+    </div>
+
+    <div class="loading-state" *ngIf="loading">
+      <span class="spinner" aria-hidden="true"></span>
+      <p>Loading your records…</p>
+    </div>
+
+    <div class="error-state" *ngIf="!loading && error">
+      <span>⚠️</span>
+      <p>{{ error }}</p>
+    </div>
+
+    <div class="empty-state" *ngIf="!loading && !error && items.length === 0">
+      <div class="empty-icon">🗂️</div>
+      <h3>No history yet</h3>
+      <p>Run your first symptom check to build a personal record of AI-guided insights.</p>
+      <a class="button primary" routerLink="/symptoms">
+        <span class="icon">➕</span>
+        Start symptom check
+      </a>
+    </div>
+
+    <div class="history-grid" *ngIf="!loading && items.length">
+      <article class="history-card" *ngFor="let it of items">
+        <header class="history-card-head">
+          <div>
+            <span class="pill">Condition match</span>
+            <h3>{{ resultCondition(it.result) }}</h3>
+          </div>
+          <button
+            type="button"
+            class="icon-btn"
+            [disabled]="deletingId === it.id"
+            (click)="remove(it.id)"
+            title="Delete record">
+            {{ deletingId === it.id ? 'Removing…' : '🗑️' }}
+          </button>
+        </header>
+
+        <div class="chip-list" *ngIf="it.symptoms as sym">
+          <ng-container *ngFor="let s of asSymArray(sym); let i = index">
+            <span class="chip" *ngIf="i <= 4">{{ chipLabel(s) }}</span>
+          </ng-container>
+          <span class="chip more" *ngIf="asSymArray(sym).length > 5">
+            +{{ asSymArray(sym).length - 5 }}
+          </span>
+
+          <ul class="remedy-list">
+            <li *ngFor="let tip of remedySuggestions(sym)">
+              <span class="remedy-label">{{ tip.label }}</span>
+              <span class="remedy-text">{{ tip.remedy }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <p class="detail" *ngIf="resultDetails(it.result)">{{ resultDetails(it.result) }}</p>
+        <p class="detail" *ngIf="resultTreatment(it.result)">
+          <strong>Treatment:</strong> {{ resultTreatment(it.result) }}
+        </p>
+        <p class="detail" *ngIf="resultAdvice(it.result)">
+          <strong>Advice:</strong> {{ resultAdvice(it.result) }}
+        </p>
+
+        <footer class="history-meta">
+          <span class="timestamp">{{ it.created_at | date: 'medium' }}</span>
+        </footer>
+      </article>
+    </div>
+  </section>
+</section>
