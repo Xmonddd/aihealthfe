@@ -7,7 +7,7 @@
     "typecheck:watch": "tsc -p tsconfig.app.json --noEmit --watch",
     "lint": "ng lint"
   },
-<<<<<<< HEAD
+
   "dependencies": {
     "@angular/common": "^17.3.12",
     "@angular/compiler": "^17.3.12",
@@ -24,7 +24,7 @@
     "@angular/compiler-cli": "^17.3.12",
     "@types/node": "^24.10.0",
     "typescript": "^5.4.5"
-=======
+
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.19",
     "@angular/cli": "^19.2.19"
@@ -38,6 +38,6 @@
     "@angular/platform-browser-dynamic": "^19.2.15",
     "@angular/router": "^19.2.15",
     "@supabase/supabase-js": "^2.78.0"
->>>>>>> cc936c714219ea7a64619296751987e275583dcc
+
   }
 }
