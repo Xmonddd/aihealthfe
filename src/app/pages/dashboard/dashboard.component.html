@@ -107,6 +107,7 @@
 
     <div class="history-grid" *ngIf="!loading && items.length">
       <article class="history-card" *ngFor="let it of items">
+<<<<<<< HEAD
         <div class="history-card-head">
           <h3>
             {{ resultCondition(it.result) }}
@@ -174,6 +175,48 @@
         </p>
         
          <footer class="history-meta">
+=======
+        <header class="history-card-head">
+          <div>
+            <span class="pill">Condition match</span>
+            <h3>{{ resultCondition(it.result) }}</h3>
+          </div>
+          <button
+            type="button"
+            class="icon-btn"
+            [disabled]="deletingId === it.id"
+            (click)="remove(it.id)"
+            title="Delete record">
+            {{ deletingId === it.id ? 'Removing…' : '🗑️' }}
+          </button>
+        </header>
+
+        <div class="chip-list" *ngIf="it.symptoms as sym">
+          <ng-container *ngFor="let s of asSymArray(sym); let i = index">
+            <span class="chip" *ngIf="i <= 4">{{ chipLabel(s) }}</span>
+          </ng-container>
+          <span class="chip more" *ngIf="asSymArray(sym).length > 5">
+            +{{ asSymArray(sym).length - 5 }}
+          </span>
+
+          <ul class="remedy-list">
+            <li *ngFor="let tip of remedySuggestions(sym)">
+              <span class="remedy-label">{{ tip.label }}</span>
+              <span class="remedy-text">{{ tip.remedy }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <p class="detail" *ngIf="resultDetails(it.result)">{{ resultDetails(it.result) }}</p>
+        <p class="detail" *ngIf="resultTreatment(it.result)">
+          <strong>Treatment:</strong> {{ resultTreatment(it.result) }}
+        </p>
+        <p class="detail" *ngIf="resultAdvice(it.result)">
+          <strong>Advice:</strong> {{ resultAdvice(it.result) }}
+        </p>
+
+        <footer class="history-meta">
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
           <span class="timestamp">{{ it.created_at | date: 'medium' }}</span>
         </footer>
       </article>

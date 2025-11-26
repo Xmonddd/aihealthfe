@@ -2,5 +2,11 @@ export const environment = {
   production: true,
   supabaseUrl: 'https://mbippmqpcamccpfjajtl.supabase.co',
   supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1iaXBwbXFwY2FtY2NwZmphanRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1MDQ0OTgsImV4cCI6MjA3NjA4MDQ5OH0.sGTBwXTKxNzdjGJZXB07SRrhutOPtUarSf6N2bYBaqo',
+<<<<<<< HEAD
   supabaseRedirectTo: 'http://localhost:4200/auth/callback', // adjust if deployed
+=======
+  supabaseRedirectTo: 'https://aihealthfe-4isq.vercel.app/auth/callback', // adjust if deployed
+
+    apiUrl: 'https://aihealthbe.onrender.com'
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
 };

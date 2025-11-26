@@ -37,6 +37,7 @@ export class AnalysisService {
   async addHistory(payload: { symptoms: any; result?: any; notes?: string }): Promise<string | null> {
     const uid = await this.getUserId();
     if (!uid) return null; // user not logged-in, skip saving
+<<<<<<< HEAD
 
     const { data, error } = await this.supabase
       .from('symptom_history')
@@ -51,6 +52,24 @@ export class AnalysisService {
       .select('id')
       .single();
 
+=======
+    const fingerprint = this.makeFingerprint({ symptoms: payload.symptoms, result: payload.result ?? null });
+
+    const { data, error } = await this.supabase
+      .from('symptom_history')
+      .upsert(
+        {
+          user_id: uid,
+          symptoms: payload.symptoms,
+          result: payload.result ?? null,
+          notes: payload.notes ?? null,
+          fingerprint,
+        },
+        { onConflict: 'user_id,fingerprint' }
+      )
+      .select('id')
+      .single();
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
     if (error) throw new Error(error.message);
     return data.id as string;
   }

@@ -52,8 +52,18 @@
           </p>
 
           <div class="quick-choices" aria-label="Quick symptom choices">
+<<<<<<< HEAD
             <button class="chip quick-option" *ngFor="let s of POPULAR_SYMPTOMS" (click)="toggleSymptom(s)">
               {{ s | lowercase }}
+=======
+            <button
+              type="button"
+              class="chip-toggle"
+              *ngFor="let symptom of POPULAR_SYMPTOMS"
+              [class.active]="isSelected(symptom)"
+              (click)="toggleSymptom(symptom)">
+              {{ symptom | titlecase }}
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
             </button>
           </div>
 
@@ -88,10 +98,17 @@
                 [attr.aria-selected]="i === activeIndex"
                 [class.active]="i === activeIndex"
                 (mousedown)="selectSuggestion(s)">
+<<<<<<< HEAD
                 {{ s | lowercase }}
               </li>
               <li class="no-result" *ngIf="noResults" style="pointer-events: none; cursor: default;">
                 No matching symptom found.
+=======
+                {{ s | titlecase }}
+              </li>
+              <li class="no-result" *ngIf="filteredSuggestions.length === 0">
+                No suggestions found. Try a different keyword.
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
               </li>
             </ul>
           </div>

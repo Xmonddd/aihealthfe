@@ -16,7 +16,10 @@ interface CheckResponse {
   topCondition?: string;
   conditionDetails?: string;
   treatment?: string;
+<<<<<<< HEAD
   remedy?: string;
+=======
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
   accuracyLevel: 'Low' | 'Moderate' | 'High';
   probabilities?: Record<string, number>;
   redFlags?: string[];
@@ -44,8 +47,11 @@ export class SymptomsComponent implements OnInit {
   filteredSuggestions: string[] = [];
   showSuggestions = false;
   activeIndex = -1;
+<<<<<<< HEAD
   noResults = false;
   availableSymptoms: string[] = [];
+=======
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
 
   age: number | null = null;
   gender: Gender = '';
@@ -75,12 +81,30 @@ export class SymptomsComponent implements OnInit {
     'diarrhea',
     'fatigue',
     'dizziness',
+<<<<<<< HEAD
+=======
+    'chills',
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
     'shortness of breath',
     'abdominal pain',
     'back pain',
     'chest pain',
     'muscle pain',
+<<<<<<< HEAD
     'rash',
+=======
+    'joint pain',
+    'rash',
+    'stomach cramps',
+    'lightheadedness',
+    'body aches',
+    'loss of appetite',
+    'loss of smell',
+    'loss of taste',
+    'eye irritation',
+    'ear pain',
+    'congestion',
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
     'itchy eyes',
   ];
 
@@ -92,10 +116,16 @@ export class SymptomsComponent implements OnInit {
     'runny nose',
     'fatigue',
     'shortness of breath',
+<<<<<<< HEAD
     'chest pain',
     
 
     
+=======
+    'abdominal pain',
+    'chest pain',
+    'rash',
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
   ];
 
   constructor(
@@ -106,7 +136,10 @@ export class SymptomsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+<<<<<<< HEAD
     void this.loadSymptoms();
+=======
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
     void this.handleReturnAfterLogin();
   }
 
@@ -124,7 +157,10 @@ export class SymptomsComponent implements OnInit {
   onInputChange(value: string): void {
     this.inputText = value;
     this.error = '';
+<<<<<<< HEAD
     this.noResults = false;
+=======
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
     this.updateSuggestions(value);
   }
 
@@ -221,6 +257,7 @@ export class SymptomsComponent implements OnInit {
     return true;
   }
 
+<<<<<<< HEAD
   private async loadSymptoms(): Promise<void> {
     try {
       const res = await fetch('http://localhost:8000/symptoms');
@@ -241,10 +278,13 @@ export class SymptomsComponent implements OnInit {
     }
   }
 
+=======
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
   private addSymptom(raw: string): void {
     const normalized = this.normalizeSymptom(raw);
     if (!normalized) return;
 
+<<<<<<< HEAD
     const match = this.availableSymptoms.find(
       (symptom) => symptom.toLowerCase() === normalized
     );
@@ -254,6 +294,10 @@ export class SymptomsComponent implements OnInit {
       this.noResults = true;
       return;
     }
+=======
+    const match =
+      this.ALL_SYMPTOMS.find((symptom) => symptom.toLowerCase() === normalized) ?? normalized;
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
 
     if (!this.selectedSymptoms.includes(match)) {
       this.selectedSymptoms = [...this.selectedSymptoms, match];
@@ -266,6 +310,7 @@ export class SymptomsComponent implements OnInit {
 
   private updateSuggestions(query: string): void {
     const normalized = this.normalizeSymptom(query);
+<<<<<<< HEAD
     const available = this.availableSymptoms.filter(
       (symptom: string) => !this.selectedSymptoms.includes(symptom),
     );
@@ -274,17 +319,31 @@ export class SymptomsComponent implements OnInit {
       this.filteredSuggestions = [];
       this.showSuggestions = false;
       this.noResults = false;
+=======
+    const available = this.ALL_SYMPTOMS.filter(
+      (symptom) => !this.selectedSymptoms.includes(symptom),
+    );
+
+    if (!normalized) {
+      this.filteredSuggestions = available.slice(0, this.SUGGESTION_LIMIT);
+      this.activeIndex = this.filteredSuggestions.length ? 0 : -1;
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
       return;
     }
 
     const scored = available
+<<<<<<< HEAD
       .map((symptom: string) => {
+=======
+      .map((symptom) => {
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
         const lower = symptom.toLowerCase();
         const startsWith = lower.startsWith(normalized) ? 0 : 1;
         const index = lower.indexOf(normalized);
         const distance = index >= 0 ? index : 99;
         return { symptom, sortKey: startsWith * 10 + distance };
       })
+<<<<<<< HEAD
       .filter((item: { symptom: string; sortKey: number }) => item.symptom.toLowerCase().includes(normalized))
       .sort((a: { sortKey: number }, b: { sortKey: number }) => a.sortKey - b.sortKey)
       .slice(0, this.SUGGESTION_LIMIT)
@@ -294,6 +353,16 @@ export class SymptomsComponent implements OnInit {
     this.showSuggestions = true;
     this.noResults = this.filteredSuggestions.length === 0;
     this.activeIndex = this.filteredSuggestions.length > 0 ? 0 : -1;
+=======
+      .filter((item) => item.symptom.toLowerCase().includes(normalized))
+      .sort((a, b) => a.sortKey - b.sortKey)
+      .slice(0, this.SUGGESTION_LIMIT)
+      .map((item) => item.symptom);
+
+    this.filteredSuggestions = scored;
+    this.activeIndex = this.filteredSuggestions.length ? 0 : -1;
+    this.showSuggestions = this.filteredSuggestions.length > 0;
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
   }
 
   private resetInput(): void {

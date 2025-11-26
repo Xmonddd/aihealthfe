@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AnalysisService, SymptomHistory } from '../../services/analysis.service';
 
+<<<<<<< HEAD
 interface HistoryItem {
   id: string;
   user_id: string;
@@ -21,6 +22,8 @@ interface HistoryItem {
   created_at: string;
 }
 
+=======
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -29,7 +32,11 @@ interface HistoryItem {
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+<<<<<<< HEAD
   items: HistoryItem[] = [];
+=======
+  items: SymptomHistory[] = [];
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
   loading = true;
   error = '';
   deletingId: string | null = null;
@@ -110,12 +117,20 @@ export class DashboardComponent implements OnInit {
 
   // Stats
   get totalChecks(): number { return this.items.length; }
+<<<<<<< HEAD
   get lastItem(): HistoryItem | undefined { return this.items[0]; }
+=======
+  get lastItem(): SymptomHistory | undefined { return this.items[0]; }
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
   get lastCondition(): string { return this.lastItem ? this.resultCondition(this.lastItem.result) : '—'; }
   get lastWhen(): string {
     return this.lastItem ? new Date(this.lastItem.created_at).toLocaleString() : '—';
   }
+<<<<<<< HEAD
     //remedy suggestions
+=======
+
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
   private readonly symptomRemedies: Record<string, string> = {
     'headache': 'Rest in a quiet, dark room, stay hydrated, and consider OTC pain relievers if appropriate.',
     'chest pain': 'Sit upright, practice slow breathing, and seek urgent care if pain is severe or with shortness of breath.',
@@ -124,6 +139,7 @@ export class DashboardComponent implements OnInit {
     'sore throat': 'Gargle warm salt water, drink warm teas with honey, and avoid irritants like smoke.',
     'fatigue': 'Prioritize sleep, eat balanced meals, and pace activities with gentle movement breaks.',
     'nausea': 'Take small sips of clear liquids, eat bland foods, and avoid strong odors.',
+<<<<<<< HEAD
     'dizziness': 'Sit or lie down, hydrate, and stand slowly; seek care if dizziness persists or worsens.',
     'runny nose': 'Use saline nasal rinses, stay hydrated, and consider decongestants for temporary relief.',
     'sneezing': 'Avoid allergens, use antihistamines if allergic, and keep environment clean and dust-free.',
@@ -202,6 +218,9 @@ export class DashboardComponent implements OnInit {
     'blood in stool': 'URGENT: Seek immediate medical attention. Note color and amount for healthcare provider.',
     'blood in urine': 'URGENT: Seek prompt medical evaluation. Increase fluid intake and avoid strenuous activity.',
     'severe pain': 'URGENT: Seek immediate medical attention. Note location, intensity, and any associated symptoms.'
+=======
+    'dizziness': 'Sit or lie down, hydrate, and stand slowly; seek care if dizziness persists or worsens.'
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
   };
 
   remedySuggestions(sym: any): { label: string; remedy: string }[] {
@@ -216,6 +235,7 @@ export class DashboardComponent implements OnInit {
         return { label, remedy };
       });
   }
+<<<<<<< HEAD
 
   // Derive a simple prediction based on previous assessment
   private severityRank(sev: string): number {
@@ -456,4 +476,6 @@ export class DashboardComponent implements OnInit {
 
     return fallbackTip;
   }
+=======
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
 }

@@ -2,6 +2,7 @@
   display: block;
 }
 
+<<<<<<< HEAD
 /* Ensure symptoms show in lowercase even if global styles capitalize */
 :host .chip,
 :host .quick-option,
@@ -12,6 +13,8 @@
   text-transform: lowercase !important;
 }
 
+=======
+>>>>>>> cc936c714219ea7a64619296751987e275583dcc
 .symptoms-page {
   max-width: 1200px;
   margin: 0 auto;
